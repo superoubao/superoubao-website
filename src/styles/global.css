@@ -531,11 +531,16 @@ img {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
+    column-gap: 0;
+    row-gap: clamp(0.65rem, 2vw, 0.85rem);
   }
 
   .site-header__nav--left {
     justify-self: center;
     order: 2;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
   }
 
   .site-header__brand {
@@ -546,7 +551,23 @@ img {
   .site-header__actions {
     grid-column: 1;
     order: 3;
+    /* Override desktop `justify-self: end` — was pinning the switcher to the right on narrow screens */
+    justify-self: center;
     justify-content: center;
+    width: 100%;
+    max-width: min(22rem, 100%);
+  }
+
+  .lang-switch {
+    flex-shrink: 1;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .lang-switch__btn {
+    padding: 0.4rem clamp(0.5rem, 3.5vw, 0.9rem);
+    font-size: clamp(0.75rem, 3.1vw, 0.8125rem);
   }
 }
 
