@@ -1,0 +1,26 @@
+---
+description: Premium native Chinese copy for SuperouBao — never translate English literally
+globs: "**/translations.ts,**/i18n/**,**/*zh*"
+alwaysApply: true
+---
+
+# Chinese copy (zh) — premium native tone
+
+When adding or editing **Chinese (`zh`)** strings in this project:
+
+1. **Do not translate word-for-word from English.** Rewrite as if the line were written first in Chinese.
+
+2. **Tone:** calm, human, emotionally grounded, refined — like a trusted guide, not a brochure or app UI.
+
+3. **Length:** use **fewer words** than the English counterpart when possible.
+
+4. **Prefer** natural spoken Chinese: short, balanced rhythm; avoid corporate or bureaucratic tone.
+
+5. **Avoid stiff or overused “translation” verbs** where softer phrasing works. Prefer human alternatives such as:
+   - 看清、理顺、陪你 / 陪您、带你 / 带您、听懂、说透、一起走、心里有底
+
+6. **Avoid** stacking abstract nouns and formal connectors typical of translated interfaces.
+
+7. **Brand context:** fertility guidance — warmth, privacy, and clinical credibility without sounding like a hospital slogan or SaaS feature list.
+
+**Source of truth:** `src/i18n/translations.ts` — all user-facing Chinese for the site lives here unless explicitly duplicated elsewhere.

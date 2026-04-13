@@ -1,0 +1,237 @@
+/* Consultation modal — calm, private, centered */
+
+.consult-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 1.75rem);
+}
+
+.consult-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: consult-modal-backdrop-in 0.28s var(--ease-out) forwards;
+}
+
+@keyframes consult-modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.consult-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  max-height: min(90vh, 720px);
+  overflow: auto;
+  margin: auto;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px rgba(10, 37, 64, 0.06),
+    0 24px 64px rgba(10, 22, 38, 0.28);
+  animation: consult-modal-panel-in 0.32s var(--ease-out) forwards;
+}
+
+@keyframes consult-modal-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.consult-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: rgba(10, 37, 64, 0.05);
+  color: var(--color-text-muted-strong);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.consult-modal__close:hover {
+  background: rgba(10, 37, 64, 0.09);
+  color: var(--color-primary);
+}
+
+.consult-modal__close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.consult-modal__title {
+  margin: 0 2.25rem 0.5rem 0;
+  font-size: clamp(1.35rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+.consult-modal__subtitle {
+  margin: 0 0 1.5rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--color-text-muted-strong);
+}
+
+.consult-modal__field {
+  margin-bottom: 1.1rem;
+}
+
+.consult-modal__label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.consult-modal__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.consult-modal__optional {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.consult-modal__input,
+.consult-modal__textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--color-text);
+  background: #fafbfc;
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.consult-modal__input:focus,
+.consult-modal__textarea:focus {
+  outline: none;
+  border-color: rgba(45, 157, 120, 0.45);
+  box-shadow: 0 0 0 3px rgba(45, 157, 120, 0.12);
+  background: #fff;
+}
+
+.consult-modal__textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.consult-modal__submit {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.consult-modal__submit:hover:not(:disabled) {
+  background: var(--color-primary-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(10, 37, 64, 0.18);
+}
+
+.consult-modal__submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.consult-modal__submit:disabled {
+  cursor: wait;
+  opacity: 0.82;
+}
+
+.consult-modal__error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-primary);
+  background: rgba(10, 37, 64, 0.05);
+  border-radius: 10px;
+}
+
+.consult-modal__error-link {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consult-modal__error-link:hover {
+  color: var(--color-primary-soft);
+}
+
+.consult-modal__footer-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.consult-modal__success {
+  padding: 1.5rem 0 0.5rem;
+  text-align: center;
+}
+
+.consult-modal__success p {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consult-modal__backdrop,
+  .consult-modal__panel {
+    animation: none;
+  }
+
+  .consult-modal__backdrop {
+    opacity: 1;
+  }
+
+  .consult-modal__panel {
+    opacity: 1;
+    transform: none;
+  }
+}
