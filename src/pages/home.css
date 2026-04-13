@@ -1366,6 +1366,263 @@
   color: var(--color-text-muted);
 }
 
+/* Patient trust — SCRC-style quotes (after Real Clinical Experience) */
+.patient-trust-section {
+  padding-block: clamp(2.75rem, 6vw, 4rem);
+  background: linear-gradient(180deg, #f6f8f9 0%, #fafcfb 100%);
+  border-block: 1px solid rgba(10, 37, 64, 0.06);
+}
+
+.patient-trust-section__title {
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
+  text-align: center;
+}
+
+.patient-trust-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+  max-width: min(1040px, 100%);
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .patient-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .patient-trust-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.patient-trust-card {
+  margin: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.65rem);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(10, 22, 38, 0.07);
+  border: 1px solid rgba(10, 37, 64, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.patient-trust-card__cred {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.patient-trust-card__stars {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  color: #c9a227;
+  user-select: none;
+}
+
+.patient-trust-card__verified {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.patient-trust-card__quote {
+  margin: 0;
+  flex: 1;
+}
+
+.patient-trust-card__quote p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.58;
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+.patient-trust-card__label {
+  margin: 0;
+  padding-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted-strong);
+}
+
+/* Layer 2 — real Google screenshots (secondary; horizontal carousel only — no uneven grid) */
+.patient-proof-section {
+  padding-block: clamp(2rem, 4.5vw, 3.25rem);
+  background: #f3f5f6;
+  border-block: 1px solid rgba(10, 37, 64, 0.05);
+}
+
+.patient-proof-section__head {
+  margin: 0 auto clamp(1.35rem, 2.5vw, 1.85rem);
+  max-width: 36rem;
+  text-align: center;
+}
+
+.patient-proof-section__title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  color: var(--color-text-muted-strong);
+}
+
+.patient-proof-section__subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* Static grid: 3 images by default; expand reveals 2 more (no horizontal slider) */
+.patient-proof__body {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.patient-proof__grid {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Three across on small tablets and up; single column on narrow phones */
+.patient-proof__grid--three {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 520px) {
+  .patient-proof__grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Five items: first row 3, second row 2 centered */
+.patient-proof__grid--five {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 520px) {
+  .patient-proof__grid--five {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .patient-proof__grid--five .patient-proof__cell:nth-child(-n + 3) {
+    grid-column: span 2;
+  }
+
+  .patient-proof__grid--five .patient-proof__cell:nth-child(4) {
+    grid-column: 2 / 4;
+  }
+
+  .patient-proof__grid--five .patient-proof__cell:nth-child(5) {
+    grid-column: 4 / 6;
+  }
+}
+
+.patient-proof__cell {
+  margin: 0;
+  min-width: 0;
+}
+
+.patient-proof__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.patient-proof__toggle {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted-strong);
+  background: #fff;
+  border: 1px solid rgba(10, 37, 64, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(10, 22, 38, 0.05);
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.patient-proof__toggle:hover {
+  border-color: rgba(10, 37, 64, 0.22);
+  color: var(--color-primary);
+}
+
+.patient-proof__toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Outer card matches testimonial card weight; keeps screenshots from overpowering Layer 1 */
+.patient-proof__card {
+  height: 100%;
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(10, 37, 64, 0.06);
+  box-shadow: 0 6px 20px rgba(10, 22, 38, 0.07);
+}
+
+.patient-proof__frame {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f6f8f9;
+  /* Cap visual height so strip stays secondary to text testimonials */
+  max-height: min(400px, 52vh);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.patient-proof__open {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: inherit;
+  line-height: 0;
+}
+
+.patient-proof__open:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.patient-proof__open:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.patient-proof__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(400px, 52vh);
+  object-fit: contain;
+  object-position: top center;
+  vertical-align: top;
+}
+
 /* Scroll reveal */
 [data-reveal] {
   opacity: 0;

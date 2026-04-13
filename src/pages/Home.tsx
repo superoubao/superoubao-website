@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useRevealInit } from "../components/RevealInit";
 import AuthorityPanel from "../components/AuthorityPanel";
 import TrustGraphic from "../components/TrustGraphic";
 import { useConsultationModal } from "../components/ConsultationModal";
+import { HOME_REVIEW_SCREENSHOTS } from "../constants/homeReviewScreenshots";
+import ReviewScreenshotLightbox from "../components/ReviewScreenshotLightbox";
 import "./home.css";
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
   const { t } = useLanguage();
   const { open: openConsultationModal } = useConsultationModal();
   const { hash } = useLocation();
+  const [reviewLightbox, setReviewLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [patientReviewsExpanded, setPatientReviewsExpanded] = useState(false);
 
   useEffect(() => {
     if (!hash) return;
@@ -48,7 +52,6 @@ export default function Home() {
                 type="button"
                 className="btn-primary btn-primary--hero-cta"
                 onClick={() => {
-                  console.log("consultation CTA clicked");
                   openConsultationModal();
                 }}
               >
@@ -106,6 +109,102 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="section patient-trust-section" aria-labelledby="patient-trust-heading">
+        <div className="shell" data-reveal>
+          <h2 id="patient-trust-heading" className="h2 h2--section patient-trust-section__title">
+            {t.homePatientTrust.title}
+          </h2>
+          <div className="patient-trust-grid">
+            {t.homePatientTrust.cards.map((card, index) => (
+              <figure key={`patient-trust-${index}`} className="patient-trust-card">
+                <div className="patient-trust-card__cred">
+                  <span className="patient-trust-card__stars" role="img" aria-label="Rated 5 out of 5">
+                    ★★★★★
+                  </span>
+                  <span className="patient-trust-card__verified">{t.homePatientTrust.verifiedLine}</span>
+                </div>
+                <blockquote className="patient-trust-card__quote">
+                  <p>{card.quote}</p>
+                </blockquote>
+                <figcaption className="patient-trust-card__label">{card.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="section patient-proof-section"
+        aria-labelledby="patient-proof-heading"
+        aria-describedby="patient-proof-subtitle"
+      >
+        <div className="shell" data-reveal>
+          <header className="patient-proof-section__head">
+            <h2 id="patient-proof-heading" className="patient-proof-section__title">
+              {t.homePatientProof.title}
+            </h2>
+            <p id="patient-proof-subtitle" className="patient-proof-section__subtitle">
+              {t.homePatientProof.subtitle}
+            </p>
+          </header>
+          <div className="patient-proof__body" role="region" aria-label={t.homePatientProof.title}>
+            <div
+              id="patient-proof-grid"
+              className={`patient-proof__grid ${patientReviewsExpanded ? "patient-proof__grid--five" : "patient-proof__grid--three"}`}
+              role="list"
+            >
+              {HOME_REVIEW_SCREENSHOTS.slice(0, patientReviewsExpanded ? 5 : 3).map((src, index) => (
+                <figure key={src} className="patient-proof__cell" role="listitem">
+                  <div className="patient-proof__card">
+                    <div className="patient-proof__frame">
+                      <button
+                        type="button"
+                        className="patient-proof__open"
+                        onClick={() =>
+                          setReviewLightbox({ src, alt: t.homePatientProof.slides[index].alt })
+                        }
+                        aria-label={`${t.homePatientProof.viewLargerAria}: ${t.homePatientProof.slides[index].alt}`}
+                      >
+                        <img
+                          className="patient-proof__img"
+                          src={src}
+                          alt=""
+                          width={720}
+                          height={1280}
+                          loading="lazy"
+                          decoding="async"
+                          aria-hidden
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </figure>
+              ))}
+            </div>
+            <div className="patient-proof__actions">
+              <button
+                type="button"
+                className="patient-proof__toggle"
+                aria-expanded={patientReviewsExpanded}
+                aria-controls="patient-proof-grid"
+                id="patient-proof-expand-btn"
+                onClick={() => setPatientReviewsExpanded((v) => !v)}
+              >
+                {patientReviewsExpanded ? t.homePatientProof.expandLess : t.homePatientProof.expandMore}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ReviewScreenshotLightbox
+        open={reviewLightbox !== null}
+        src={reviewLightbox?.src ?? null}
+        alt={reviewLightbox?.alt ?? ""}
+        closeLabel={t.homePatientProof.closeLightboxAria}
+        onClose={() => setReviewLightbox(null)}
+      />
 
       <section
         className="section home-surface-b section--home-loose section--layout-left"
@@ -209,7 +308,7 @@ export default function Home() {
               <div className="social-proof-split__frame">
                 <img
                   className="social-proof-split__img"
-                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=82"
+                  src="/hero-pregnancy.png"
                   alt={t.socialProof.sideImageAlt}
                   width={900}
                   height={1200}
@@ -294,7 +393,6 @@ export default function Home() {
               type="button"
               className="btn-primary closing-block__btn"
               onClick={() => {
-                console.log("consultation CTA clicked (closing)");
                 openConsultationModal();
               }}
             >

@@ -5,6 +5,21 @@ import { useConsultationModal } from "../components/ConsultationModal";
 import TrustGraphic from "../components/TrustGraphic";
 import "./services.css";
 
+function serviceHref(itemId: string): string {
+  switch (itemId) {
+    case "consultation":
+      return "/consultation";
+    case "provider-matching":
+      return "/provider-matching";
+    case "care-coordination":
+      return "/care-coordination";
+    case "prp-ovarian-rejuvenation":
+      return "/prp-ovarian-rejuvenation";
+    default:
+      return "mailto:superoubao@gmail.com";
+  }
+}
+
 export default function Services() {
   const { t } = useLanguage();
   const s = t.servicesPage;
@@ -30,11 +45,6 @@ export default function Services() {
               {s.title}
             </h1>
             <p className="body-lg services-hero__lead">{s.lead}</p>
-            <div className="services-hero__actions">
-              <Link to="/#process" className="btn-primary services-hero__cta-process">
-                {s.ctaSecondary}
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -43,20 +53,28 @@ export default function Services() {
         <div className="shell">
           <div className="services-tiers">
             <div className="services-tiers__grid">
-              {s.items.map((item) => {
-                const href =
-                  item.id === "consultation"
-                    ? "/consultation"
-                    : item.id === "provider-matching"
-                      ? "/provider-matching"
-                      : item.id === "care-coordination"
-                        ? "/care-coordination"
-                        : "mailto:superoubao@gmail.com";
+              {s.items.map((item, index) => {
+                const href = serviceHref(item.id);
+                const mini = s.serviceTestimonials[index];
                 const tier =
-                  item.id === "consultation" ? "entry" : item.id === "provider-matching" ? "mid" : "full";
+                  item.id === "consultation"
+                    ? "entry"
+                    : item.id === "provider-matching"
+                      ? "mid"
+                      : item.id === "care-coordination"
+                        ? "full"
+                        : "prp";
+                const isFeatured = item.id === "consultation";
 
                 return (
-                  <article key={item.id} id={item.id} className={`service-card service-card--${tier}`}>
+                  <article
+                    key={item.id}
+                    id={item.id}
+                    className={`service-card service-card--${tier}${isFeatured ? " service-card--featured" : ""}`}
+                  >
+                    {isFeatured ? (
+                      <p className="service-card__recommended">{s.consultationBadge}</p>
+                    ) : null}
                     <header className="service-card__header">
                       <p className="service-card__tag">{item.tag}</p>
                       <h2 className="service-card__title">{item.title}</h2>
@@ -69,13 +87,30 @@ export default function Services() {
                         </li>
                       ))}
                     </ul>
+                    <figure className="service-card__testimonial">
+                      <span className="service-card__testimonial-mark" aria-hidden="true">
+                        “
+                      </span>
+                      <blockquote className="service-card__testimonial-quote">
+                        <p>{mini.quote}</p>
+                      </blockquote>
+                      <figcaption className="service-card__testimonial-label">{mini.label}</figcaption>
+                    </figure>
                     <div className="service-card__footer">
-                      {href.startsWith("mailto") ? (
-                        <a href={href} className="btn-primary service-card__cta">
+                      {item.ctaVariant === "primary" ? (
+                        <button
+                          type="button"
+                          className="btn-primary service-card__cta service-card__cta--primary"
+                          onClick={() => openConsultationModal()}
+                        >
                           {item.cta}
-                        </a>
+                        </button>
+                      ) : item.ctaVariant === "secondary" ? (
+                        <Link to={href} className="btn-secondary service-card__cta">
+                          {item.cta}
+                        </Link>
                       ) : (
-                        <Link to={href} className="btn-primary service-card__cta">
+                        <Link to={href} className="btn-tertiary service-card__cta">
                           {item.cta}
                         </Link>
                       )}

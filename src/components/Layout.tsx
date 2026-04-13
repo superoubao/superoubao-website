@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { ReactNode } from "react";
+import { INTAKE_QUESTIONNAIRE_PDF } from "../constants/downloads";
 import { useLanguage } from "../i18n/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { ConsultationModalProvider } from "./ConsultationModal";
@@ -11,10 +12,14 @@ export default function Layout({ children }: { children: ReactNode }) {
     pathname === "/services" ||
     pathname === "/consultation" ||
     pathname === "/provider-matching" ||
-    pathname === "/care-coordination";
+    pathname === "/care-coordination" ||
+    pathname === "/prp-ovarian-rejuvenation";
 
   return (
     <ConsultationModalProvider>
+      <a href="#main-content" className="skip-link">
+        {t.a11y.skipToMain}
+      </a>
       <header className="site-header">
         <div className="site-header__inner">
           <nav className="site-header__nav site-header__nav--left" aria-label="Primary">
@@ -46,7 +51,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                           ? "/provider-matching"
                           : item.id === "care-coordination"
                             ? "/care-coordination"
-                            : `/services#${item.id}`
+                            : item.id === "prp-ovarian-rejuvenation"
+                              ? "/prp-ovarian-rejuvenation"
+                              : `/services#${item.id}`
                     }
                     className="site-header__dropdown-link"
                     role="menuitem"
@@ -81,7 +88,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <footer className="site-footer">
         <div className="shell site-footer__inner">
           <p className="site-footer__tagline">{t.footer.tagline}</p>
@@ -89,6 +96,16 @@ export default function Layout({ children }: { children: ReactNode }) {
             <a href={`mailto:${t.footer.contactEmail}`} className="site-footer__email">
               {t.footer.contactEmail}
             </a>
+          </p>
+          <p className="site-footer__intake">
+            <a href={INTAKE_QUESTIONNAIRE_PDF} className="site-footer__intake-link" target="_blank" rel="noopener noreferrer">
+              {t.footer.intakePdfLabel}
+            </a>
+          </p>
+          <p className="site-footer__privacy">
+            <Link to="/privacy" className="site-footer__privacy-link">
+              {t.footer.privacyLabel}
+            </Link>
           </p>
         </div>
       </footer>

@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
+import { INTAKE_QUESTIONNAIRE_PDF } from "../constants/downloads";
 import { useLanguage } from "../i18n/LanguageContext";
 import "./consultation-modal.css";
 
@@ -135,15 +136,15 @@ function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
       } catch {
         /* non-JSON response */
       }
-      console.log("Consultation request submitted", { destination, payload, ok: res.ok, response: data });
-
       if (!res.ok || data?.success === false) {
         setSubmitError(m.submitError);
         return;
       }
       setView("success");
     } catch {
-      console.error("Consultation submit failed", { destination, payload });
+      if (import.meta.env.DEV) {
+        console.error("Consultation submit failed");
+      }
       setSubmitError(m.submitError);
     } finally {
       setSubmitting(false);
@@ -255,6 +256,17 @@ function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
                 {submitting ? m.submitSending : m.submit}
               </button>
               <p className="consult-modal__footer-note">{m.footerNote}</p>
+              <p className="consult-modal__intake">
+                <span className="consult-modal__intake-note">{m.intakePdfNote}</span>{" "}
+                <a
+                  href={INTAKE_QUESTIONNAIRE_PDF}
+                  className="consult-modal__intake-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {m.intakePdfLink}
+                </a>
+              </p>
             </form>
           </>
         )}

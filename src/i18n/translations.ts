@@ -21,7 +21,8 @@ export type Messages = {
       ];
     };
   };
-  footer: { tagline: string; contactEmail: string };
+  footer: { tagline: string; contactEmail: string; intakePdfLabel: string; privacyLabel: string };
+  a11y: { skipToMain: string };
   hero: {
     title: string;
     sub: string;
@@ -34,6 +35,32 @@ export type Messages = {
     bullets: [string, string, string];
     tags: [string, string, string];
     imageAlt: string;
+  };
+  homePatientTrust: {
+    title: string;
+    verifiedLine: string;
+    cards: [
+      { quote: string; label: string },
+      { quote: string; label: string },
+      { quote: string; label: string },
+      { quote: string; label: string },
+      { quote: string; label: string },
+    ];
+  };
+  homePatientProof: {
+    title: string;
+    subtitle: string;
+    viewLargerAria: string;
+    closeLightboxAria: string;
+    expandMore: string;
+    expandLess: string;
+    slides: [
+      { alt: string },
+      { alt: string },
+      { alt: string },
+      { alt: string },
+      { alt: string },
+    ];
   };
   support: {
     kicker: string;
@@ -86,6 +113,8 @@ export type Messages = {
     submitSending: string;
     submitError: string;
     footerNote: string;
+    intakePdfNote: string;
+    intakePdfLink: string;
     successMessage: string;
     closeAria: string;
   };
@@ -93,11 +122,50 @@ export type Messages = {
     kicker: string;
     title: string;
     lead: string;
-    ctaSecondary: string;
+    consultationBadge: string;
     items: [
-      { id: string; title: string; tag: string; desc: string; bullets: string[]; cta: string },
-      { id: string; title: string; tag: string; desc: string; bullets: string[]; cta: string },
-      { id: string; title: string; tag: string; desc: string; bullets: string[]; cta: string },
+      {
+        id: string;
+        title: string;
+        tag: string;
+        desc: string;
+        bullets: string[];
+        cta: string;
+        ctaVariant: "primary" | "secondary" | "tertiary";
+      },
+      {
+        id: string;
+        title: string;
+        tag: string;
+        desc: string;
+        bullets: string[];
+        cta: string;
+        ctaVariant: "primary" | "secondary" | "tertiary";
+      },
+      {
+        id: string;
+        title: string;
+        tag: string;
+        desc: string;
+        bullets: string[];
+        cta: string;
+        ctaVariant: "primary" | "secondary" | "tertiary";
+      },
+      {
+        id: string;
+        title: string;
+        tag: string;
+        desc: string;
+        bullets: string[];
+        cta: string;
+        ctaVariant: "primary" | "secondary" | "tertiary";
+      },
+    ];
+    serviceTestimonials: [
+      { quote: string; label: string },
+      { quote: string; label: string },
+      { quote: string; label: string },
+      { quote: string; label: string },
     ];
     whoFor: {
       title: string;
@@ -161,6 +229,45 @@ export type Messages = {
     expertise: { title: string; body: string; graphicAlt: string };
     cta: { title: string };
   };
+  prpOvarianPage: {
+    metaTitle: string;
+    hero: { kicker: string; title: string; paragraphs: string[] };
+    qa: {
+      title: string;
+      items: [
+        { question: string; answer: string },
+        { question: string; answer: string },
+        { question: string; answer: string },
+        { question: string; answer: string },
+      ];
+    };
+    travelBanner: string;
+    disclaimer: string;
+    cta: { title: string };
+  };
+  notFoundPage: { title: string; lead: string; homeCta: string };
+  privacyPage: {
+    metaTitle: string;
+    title: string;
+    intro: string;
+    sections: [{ heading: string; body: string }, { heading: string; body: string }, { heading: string; body: string }];
+    footnote: string;
+  };
+  seo: {
+    brand: string;
+    defaultDescription: string;
+    routes: {
+      home: { title: string; description: string };
+      services: { title: string; description: string };
+      consultation: { title: string; description: string };
+      providerMatching: { title: string; description: string };
+      careCoordination: { title: string; description: string };
+      prp: { title: string; description: string };
+      about: { title: string; description: string };
+      privacy: { title: string; description: string };
+      notFound: { title: string; description: string };
+    };
+  };
 };
 
 export const messages: Record<Locale, Messages> = {
@@ -171,6 +278,9 @@ export const messages: Record<Locale, Messages> = {
       about: "About",
       requestCta: "Request a Consultation",
       servicesMenuAria: "Services submenu",
+    },
+    a11y: {
+      skipToMain: "Skip to main content",
     },
     aboutPage: {
       metaTitle: "About SuperouBao",
@@ -214,6 +324,8 @@ export const messages: Record<Locale, Messages> = {
     footer: {
       tagline: "Thoughtful guidance for your fertility journey.",
       contactEmail: "superoubao@gmail.com",
+      intakePdfLabel: "Intake questionnaire (Download)",
+      privacyLabel: "Privacy",
     },
     hero: {
       title: "Guiding Your Fertility Journey\nwith Care",
@@ -231,6 +343,52 @@ export const messages: Record<Locale, Messages> = {
       ],
       tags: ["RN-led", "Beverly Hills network", "Private consultations"],
       imageAlt: "Abstract illustration of a clinical care pathway and journey",
+    },
+    homePatientTrust: {
+      title: "Trusted by Patients Like You",
+      verifiedLine: "Verified Google Review",
+      cards: [
+        {
+          quote:
+            "Dr. Danzer and Ariel were incredibly supportive through our first IVF treatment. We received quick lab results, clear explanations, and consistent communication throughout the process.",
+          label: "IVF PATIENT · LOS ANGELES",
+        },
+        {
+          quote:
+            "I felt genuinely cared for at every step. Dr. Danzer was professional and trustworthy, and Ariel made the entire journey feel calm, clear, and well supported.",
+          label: "IVF PATIENT · SOUTHERN CALIFORNIA",
+        },
+        {
+          quote:
+            "Everything at SCRC went smoothly. Special thanks to Ariel for her patience and care throughout the egg freezing process.",
+          label: "EGG FREEZING PATIENT · SOUTHERN CALIFORNIA",
+        },
+        {
+          quote:
+            "From early testing to embryo transfer and pregnancy confirmation, every step felt smooth and coordinated. Ariel helped us communicate efficiently across the clinic and made the process feel much easier.",
+          label: "IVF PATIENT · CHINESE-SPEAKING FAMILY",
+        },
+        {
+          quote:
+            "When timing became stressful, Ariel stepped in, followed up personally, and helped make the egg freezing process possible before my departure. Her support made a critical difference.",
+          label: "EGG FREEZING PATIENT · INTERNATIONAL PATIENT",
+        },
+      ],
+    },
+    homePatientProof: {
+      title: "Real Patient Reviews",
+      subtitle: "From verified Google patient feedback",
+      viewLargerAria: "View full-size screenshot",
+      closeLightboxAria: "Close",
+      expandMore: "Show 2 more reviews",
+      expandLess: "Show less",
+      slides: [
+        { alt: "Google review screenshot: IVF care at SCRC" },
+        { alt: "Google review screenshot: IVF journey with clinical team" },
+        { alt: "Google review screenshot: egg freezing experience" },
+        { alt: "Google review screenshot: IVF in Chinese" },
+        { alt: "Google review screenshot: international egg freezing support" },
+      ],
     },
     support: {
       kicker: "What we do",
@@ -349,6 +507,8 @@ export const messages: Record<Locale, Messages> = {
       submitSending: "Sending…",
       submitError: "We couldn’t send just now. Please email us directly and we’ll help you there.",
       footerNote: "We’ll respond within 24 hours.",
+      intakePdfNote: "Prefer to prepare on paper? Download our intake questionnaire and attach it when you email us.",
+      intakePdfLink: "Download questionnaire",
       successMessage: "Thank you. We’ll be in touch shortly.",
       closeAria: "Close",
     },
@@ -357,7 +517,7 @@ export const messages: Record<Locale, Messages> = {
       title: "Choose the level of support you need",
       lead:
         "From focused consultation to full care coordination, we provide structured, clinically grounded support tailored to your situation.",
-      ctaSecondary: "View Process",
+      consultationBadge: "Recommended",
       items: [
         {
           id: "consultation",
@@ -369,7 +529,8 @@ export const messages: Record<Locale, Messages> = {
             "Identify key priorities",
             "Clear clinical perspective",
           ],
-          cta: "Explore Consultation",
+          cta: "Request Consultation",
+          ctaVariant: "primary",
         },
         {
           id: "provider-matching",
@@ -382,7 +543,8 @@ export const messages: Record<Locale, Messages> = {
             "Shortlist credible programs",
             "Transparent decision support",
           ],
-          cta: "Explore Provider Matching",
+          cta: "Learn More",
+          ctaVariant: "secondary",
         },
         {
           id: "care-coordination",
@@ -394,7 +556,40 @@ export const messages: Record<Locale, Messages> = {
             "Timeline and logistics",
             "Aligned with your care team",
           ],
-          cta: "Explore Care Coordination",
+          cta: "Learn More",
+          ctaVariant: "secondary",
+        },
+        {
+          id: "prp-ovarian-rejuvenation",
+          title: "PRP Ovarian Rejuvenation",
+          tag: "THERAPY",
+          desc:
+            "Platelet-rich plasma prepared from your own blood and delivered to the ovaries under ultrasound guidance—focused support for ovarian responsiveness.",
+          bullets: [
+            "Autologous PRP—no donor material",
+            "Ultrasound-guided procedure",
+            "Review candidacy and timing with our team",
+          ],
+          cta: "View Treatment",
+          ctaVariant: "tertiary",
+        },
+      ],
+      serviceTestimonials: [
+        {
+          quote: "Whenever I had questions, someone got back to me quickly and helped me understand the results.",
+          label: "Consultation patient · Los Angeles",
+        },
+        {
+          quote: "We’re glad we chose SCRC—the team helped us stay steady on a path that felt overwhelming at first.",
+          label: "IVF patient · SCRC",
+        },
+        {
+          quote: "Ariel helped keep every step on track before I left the U.S.—clear reminders right when I needed them.",
+          label: "Egg freezing patient · Beverly Hills",
+        },
+        {
+          quote: "From workup to transfer, the process felt organized and calm. I’m grateful to the whole team.",
+          label: "IVF patient · Los Angeles",
         },
       ],
       whoFor: {
@@ -553,6 +748,129 @@ export const messages: Record<Locale, Messages> = {
         title: "Ready for coordinated support?",
       },
     },
+    prpOvarianPage: {
+      metaTitle: "PRP ovarian rejuvenation",
+      hero: {
+        kicker: "Clinical therapy",
+        title: "Platelet Rich Plasma (PRP) for ovarian rejuvenation",
+        paragraphs: [
+          "Platelet Rich Plasma (PRP) for ovarian rejuvenation. It is used to treat one of the most difficult infertility conditions: the diminished egg number and quality that occurs as a woman becomes older. By infusing a patient’s own PRP into her ovaries, approximately half of these women respond with improved ovarian function including a reduction in FSH and an increase in AMH. At present, no other treatments successfully address this condition.",
+          "The procedure takes approximately 1–2 hours and begins with the isolation of the platelet rich portion of blood. The platelets are then activated after which they release hundreds of proteins and other factors that serve to enhance the growth and differentiation of stem cells. They are then infused into the ovaries under ultrasound guidance without the need for anesthesia.",
+          "The ovarian response is normally seen within 2–3 months and has successfully led to the retrieval of eggs even from women who had become menopause in the year prior to the procedure.",
+        ],
+      },
+      qa: {
+        title: "Practical questions",
+        items: [
+          {
+            question: "How many treatments are needed, how long is each visit, and when might changes be seen?",
+            answer:
+              "Often one treatment is enough; a second is only occasionally discussed. Expect on the order of two hours at the clinic. Many teams reassess around two to three months.",
+          },
+          {
+            question: "Is a blood draw required? Is anesthesia needed? What about risks?",
+            answer:
+              "Yes—a small venous draw is required (often around two tubes, roughly 8–10 mL total). General anesthesia is usually not required. The injection is performed under ultrasound guidance. Risks and contraindications should be reviewed directly with your clinician.",
+          },
+          {
+            question: "Who is this approach commonly discussed for?",
+            answer:
+              "It is frequently considered in contexts such as diminished ovarian response, premature ovarian insufficiency patterns, or the perimenopausal transition. Evidence in postmenopausal patients is still evolving. Large European and U.S. case series have been reported; success rates depend on how “success” is defined—your doctor can help interpret what that means for you.",
+          },
+          {
+            question: "How is effectiveness evaluated?",
+            answer:
+              "Typically around two to three months after treatment, assessment is timed to early cycle days (often cycle days 2–5): blood tests (including hormones such as AMH) plus ultrasound monitoring of basal antral follicles. The goal is to interpret ovarian reserve and egg-quality–related signals together—not a single number in isolation.",
+          },
+        ],
+      },
+      travelBanner:
+        "Many families make one focused trip to the United States—often about one to two days on site when scheduling allows.",
+      disclaimer:
+        "Educational overview only; not medical advice. Protocols and eligibility belong to your treating physician.",
+      cta: {
+        title: "Questions about PRP timing or travel?",
+      },
+    },
+    notFoundPage: {
+      title: "Page not found",
+      lead: "The page you’re looking for doesn’t exist, or the link may be out of date.",
+      homeCta: "Back to home",
+    },
+    privacyPage: {
+      metaTitle: "Privacy",
+      title: "Privacy & data",
+      intro:
+        "SuperouBao respects your privacy. This page summarizes how information may be handled when you use this website or contact us. It is general information—not legal advice; ask a qualified professional if you need guidance for your situation.",
+      sections: [
+        {
+          heading: "What you may share with us",
+          body:
+            "When you email us or submit a consultation request, we typically receive the details you choose to provide (such as name, contact information, and a short description of your situation). Technical data such as browser type or approximate region may also be collected by standard web infrastructure.",
+        },
+        {
+          heading: "How we use it",
+          body:
+            "We use this information to respond to you, improve our services, and keep our communications relevant. We do not sell your personal information. Third-party tools (for example email or form delivery) may process data under their own terms—use those channels only if you are comfortable with their policies.",
+        },
+        {
+          heading: "Your choices & updates",
+          body:
+            "You may contact us to ask questions about this notice or to request correction of basic contact details we hold. We may update this page from time to time; substantive changes will be reflected here.",
+        },
+      ],
+      footnote: "Last updated: April 2026. For questions: see the contact email in the site footer.",
+    },
+    seo: {
+      brand: "SuperouBao",
+      defaultDescription:
+        "Clinical clarity for fertility decisions — data analysis, specialist matching, guided care.",
+      routes: {
+        home: {
+          title: "Clinical intelligence for your fertility journey",
+          description:
+            "RN-grounded fertility guidance for international care—planning, specialist alignment, and steady coordination.",
+        },
+        services: {
+          title: "Services",
+          description:
+            "Explore consultation, provider matching, care coordination, and treatment pathways tailored to your fertility goals.",
+        },
+        consultation: {
+          title: "Fertility consultation",
+          description:
+            "Book a structured consultation to clarify options, timing, and next steps with clinically informed support.",
+        },
+        providerMatching: {
+          title: "Provider matching",
+          description:
+            "Align with fertility programs and clinicians that fit your medical needs, values, and logistics.",
+        },
+        careCoordination: {
+          title: "Care coordination",
+          description:
+            "Ongoing coordination across visits, documents, and communication so your pathway stays organized.",
+        },
+        prp: {
+          title: "PRP ovarian rejuvenation",
+          description:
+            "Educational overview of platelet rich plasma for ovarian rejuvenation—process, timing, and what to ask your doctor.",
+        },
+        about: {
+          title: "About SuperouBao",
+          description:
+            "Who we are: a premium fertility consulting practice founded by an RN with experience in leading U.S. fertility centers.",
+        },
+        privacy: {
+          title: "Privacy",
+          description: "How SuperouBao approaches privacy and data when you use this site or contact our team.",
+        },
+        notFound: {
+          title: "Page not found",
+          description: "This page does not exist on SuperouBao.",
+        },
+      },
+    },
   },
   zh: {
     nav: {
@@ -561,6 +879,9 @@ export const messages: Record<Locale, Messages> = {
       about: "关于",
       requestCta: "预约咨询",
       servicesMenuAria: "服务子菜单",
+    },
+    a11y: {
+      skipToMain: "跳到主要内容",
     },
     aboutPage: {
       metaTitle: "关于 SuperouBao",
@@ -604,6 +925,8 @@ export const messages: Record<Locale, Messages> = {
     footer: {
       tagline: "生育路上，专业相随，安心相伴。",
       contactEmail: "superoubao@gmail.com",
+      intakePdfLabel: "初诊问卷（下载）",
+      privacyLabel: "隐私说明",
     },
     hero: {
       title: "以关怀陪伴您的\n生育之路",
@@ -621,6 +944,51 @@ export const messages: Record<Locale, Messages> = {
       ],
       tags: ["RN 把关", "比佛利山庄网络", "私密咨询"],
       imageAlt: "抽象图形：临床路径与陪伴旅程",
+    },
+    homePatientTrust: {
+      title: "与您相似的患者，也愿意托付",
+      verifiedLine: "已验证 · Google 评价",
+      cards: [
+        {
+          quote:
+            "第一次试管婴儿，Danzer 医生与 Ariel 全程非常给力。化验出得快，每一步也都有人讲清楚、跟得紧。",
+          label: "试管婴儿 · 洛杉矶",
+        },
+        {
+          quote:
+            "每一步都很安心。Danzer 医生专业可靠，Ariel 让整段旅程从容、清楚，也一直有人照应。",
+          label: "试管婴儿 · 南加州",
+        },
+        {
+          quote: "在 SCRC 一路很顺，特别感谢 Ariel 在冻卵全程的耐心与陪伴。",
+          label: "冻卵 · 南加州",
+        },
+        {
+          quote:
+            "从检查到移植、确认怀孕，环节衔接顺。Ariel 帮我们跨部门沟通，省了很多心，也轻松许多。",
+          label: "试管婴儿 · 华语家庭",
+        },
+        {
+          quote:
+            "时间很紧时，Ariel 主动跟进、当面协调，让我在离境前完成了冻卵——她的帮忙非常关键。",
+          label: "冻卵 · 国际患者",
+        },
+      ],
+    },
+    homePatientProof: {
+      title: "真实患者评价",
+      subtitle: "摘自 Google 已验证的患者反馈",
+      viewLargerAria: "查看大图",
+      closeLightboxAria: "关闭",
+      expandMore: "展开，再看 2 条",
+      expandLess: "收起",
+      slides: [
+        { alt: "Google 评价截图：试管婴儿照护" },
+        { alt: "Google 评价截图：试管婴儿全程" },
+        { alt: "Google 评价截图：冻卵体验" },
+        { alt: "Google 评价截图：中文试管婴儿" },
+        { alt: "Google 评价截图：国际患者冻卵" },
+      ],
     },
     support: {
       kicker: "我们怎么做",
@@ -738,6 +1106,8 @@ export const messages: Record<Locale, Messages> = {
       submitSending: "发送中…",
       submitError: "暂时发不出去，请邮件联系我们。",
       footerNote: "24 小时内回复。",
+      intakePdfNote: "想先理清病史？可下载初诊问卷，填好后随邮件一并发来。",
+      intakePdfLink: "下载初诊问卷",
       successMessage: "收到了，我们会尽快联系您。",
       closeAria: "关闭",
     },
@@ -746,7 +1116,7 @@ export const messages: Record<Locale, Messages> = {
       title: "按您所需，选择支持深度",
       lead:
         "从单次深度咨询到全程医疗协调，我们以结构化、临床视角为支撑，按您的实际情况量身定制。",
-      ctaSecondary: "了解流程",
+      consultationBadge: "建议从这里开始",
       items: [
         {
           id: "consultation",
@@ -754,7 +1124,8 @@ export const messages: Record<Locale, Messages> = {
           tag: "入门",
           desc: "聚焦一次深度沟通，厘清您的情况与下一步方向。",
           bullets: ["梳理病史与报告要点", "明确优先事项", "给出清晰的临床视角"],
-          cta: "了解生育咨询",
+          cta: "预约咨询",
+          ctaVariant: "primary",
         },
         {
           id: "provider-matching",
@@ -762,7 +1133,8 @@ export const messages: Record<Locale, Messages> = {
           tag: "常见选择",
           desc: "按您的目标与时间线，对接更契合的专科项目与生育中心。",
           bullets: ["评估临床匹配度", "筛选可信机构短名单", "决策过程透明可验证"],
-          cta: "了解医疗资源匹配",
+          cta: "了解更多",
+          ctaVariant: "secondary",
         },
         {
           id: "care-coordination",
@@ -770,7 +1142,35 @@ export const messages: Record<Locale, Messages> = {
           tag: "全程支持",
           desc: "从方案到执行持续协调，每一步沟通清晰、节奏可控。",
           bullets: ["单一联络窗口", "时间线与行程统筹", "与您的医疗团队对齐"],
-          cta: "了解全程协调",
+          cta: "了解更多",
+          ctaVariant: "secondary",
+        },
+        {
+          id: "prp-ovarian-rejuvenation",
+          title: "PRP 卵巢再生疗法",
+          tag: "疗程",
+          desc: "自体富血小板血浆在超声引导下送达卵巢，温柔陪伴卵巢对刺激的反应。",
+          bullets: ["自体血液制备，无外来供体", "超声引导下操作，路径清楚", "是否适合、何时出发，与顾问细聊"],
+          cta: "查看疗程",
+          ctaVariant: "tertiary",
+        },
+      ],
+      serviceTestimonials: [
+        {
+          quote: "有疑问时，回复很快，也会帮我读懂化验结果。",
+          label: "咨询客户 · 洛杉矶",
+        },
+        {
+          quote: "庆幸选了 SCRC，一开始很慌的路，被他们带着稳住了。",
+          label: "试管婴儿 · SCRC",
+        },
+        {
+          quote: "离美前每一步都有人提醒，节奏清楚，少了很多慌乱。",
+          label: "冻卵 · 比佛利山庄",
+        },
+        {
+          quote: "从检查到移植，流程清楚、心里也有底，感谢团队一路相伴。",
+          label: "试管婴儿 · 洛杉矶",
         },
       ],
       whoFor: {
@@ -927,6 +1327,119 @@ export const messages: Record<Locale, Messages> = {
       },
       cta: {
         title: "希望有人替您把全程串起来？",
+      },
+    },
+    prpOvarianPage: {
+      metaTitle: "PRP 卵巢再生疗法",
+      hero: {
+        kicker: "疗程说明",
+        title: "PRP（高浓度血小板血浆）卵巢再生疗法",
+        paragraphs: [
+          "「PRP（高浓度血小板血浆）」是近年来备受关注的新技术，可刺激卵巢功能回升，应对女性年龄增长带来的卵子数量与质量下降。取自您自身的高浓度血小板血浆，会注射到卵巢内。术后超过半数个案可见卵巢功能改善，例如促卵泡生成素下降、抗缪勒管激素升高等。当前并无其他已知技术能带来相近效果。",
+          "全程约 1–2 小时。先从血样中分离富含高浓度血小板的部分，再激活血小板；其间可释放上百种蛋白质与其他因子，有助于干细胞生长与分化。无需麻醉，医生在超声引导下将血小板注射至双侧卵巢。",
+          "卵巢反应多在术后 2–3 个月内逐步显现。有记载案例中，即便在术前一年内已绝经的女性，仍有机会再次取卵、进入自卵周期。",
+        ],
+      },
+      qa: {
+        title: "您可能还想了解",
+        items: [
+          {
+            question: "需要做几次？每次多久？多久能看到变化？",
+            answer:
+              "多数一次即可，少数再议第二次；在院流程大约两小时。多数人会在两三个月左右安排复查、评估变化。",
+          },
+          {
+            question: "要抽血吗？要麻醉吗？对身体有风险吗？",
+            answer:
+              "需要采集静脉血，约两管（8–10 mL）；一般无需麻醉。注射在超声引导下完成。具体风险与禁忌，须当面与医生确认。",
+          },
+          {
+            question: "适合哪些人？",
+            answer:
+              "常与卵巢反应不佳、卵巢早衰倾向、围绝经期等情况一起讨论；绝经后人群证据仍在积累。欧美已有大量案例报道，所谓「有效率」因定义不同而有差异，宜理性看待。",
+          },
+          {
+            question: "怎样判断有没有帮助？",
+            answer:
+              "治疗后约两三个月，常在月经第 2–5 天抽血，并结合超声观察基础窦卵泡等；综合 AMH 等激素与影像，从储备与卵子质量相关指标来解读。由主治医判断。",
+          },
+        ],
+      },
+      travelBanner: "赴美通常只需一次短程停留，约一至两天可完成相关安排（视诊所排期而定）。",
+      disclaimer: "以上仅供了解，不能替代面诊与医嘱；方案与禁忌由主治医决定。",
+      cta: {
+        title: "想聊聊 PRP 的时间与行程？",
+      },
+    },
+    notFoundPage: {
+      title: "页面不存在",
+      lead: "您打开的链接可能有误，或页面已更新。",
+      homeCta: "回首页",
+    },
+    privacyPage: {
+      metaTitle: "隐私说明",
+      title: "隐私与数据",
+      intro:
+        "SuperouBao 重视您的隐私。以下说明在您浏览本站或与我们联系时，信息大致如何处理。仅供一般了解，不构成法律意见；若您有个人合规需求，请咨询专业人士。",
+      sections: [
+        {
+          heading: "您可能提供给我们的信息",
+          body:
+            "当您发邮件或提交咨询请求时，通常会收到您主动填写的内容（如姓名、联系方式与情况简述）。网站基础设施也可能记录浏览器类型、大致地区等技术信息。",
+        },
+        {
+          heading: "我们如何使用",
+          body:
+            "用于回复您、改进服务并保持沟通相关。我们不会出售您的个人信息。邮件或表单等第三方服务会按其条款处理数据——若您使用这些渠道，即表示理解并接受其政策。",
+        },
+        {
+          heading: "您的选择与更新",
+          body:
+            "若对本说明有疑问，或希望更正我们留存的基本联系信息，欢迎来信询问。本页可能不时更新；如有实质变更，会在此反映。",
+        },
+      ],
+      footnote: "更新日期：2026 年 4 月。疑问请见页脚联系邮箱。",
+    },
+    seo: {
+      brand: "SuperouBao",
+      defaultDescription: "生育决策更清晰——数据分析、医生匹配、全程陪伴式协调。",
+      routes: {
+        home: {
+          title: "陪您把生育这条路看清楚",
+          description: "以注册护士一线经验为底，协助跨境辅助生殖的规划、匹配与协调，让流程更稳、更安心。",
+        },
+        services: {
+          title: "服务",
+          description: "了解咨询、医生匹配、全程协调及适合您的治疗路径。",
+        },
+        consultation: {
+          title: "生育咨询",
+          description: "结构化咨询，厘清选项、时机与下一步，临床视角更清楚。",
+        },
+        providerMatching: {
+          title: "医疗资源匹配",
+          description: "结合病情、价值观与行程，对齐合适的生育中心与医生。",
+        },
+        careCoordination: {
+          title: "全程协调服务",
+          description: "就诊、文件与沟通上的持续协调，让路径少断点、少遗漏。",
+        },
+        prp: {
+          title: "PRP 卵巢再生疗法",
+          description: "关于 PRP 用于卵巢再生的教育性介绍：流程、时间与面诊时要问清的问题。",
+        },
+        about: {
+          title: "关于 SuperouBao",
+          description: "由深耕美国一线生育中心的 RN 创立的高端咨询团队，连接全球顶尖医疗资源。",
+        },
+        privacy: {
+          title: "隐私说明",
+          description: "SuperouBao 如何处理您在使用本站或联系团队时的隐私与数据。",
+        },
+        notFound: {
+          title: "页面不存在",
+          description: "SuperouBao 网站上没有此页面。",
+        },
       },
     },
   },
