@@ -4,6 +4,7 @@ export type Messages = {
   nav: {
     home: string;
     services: string;
+    reviews: string;
     about: string;
     requestCta: string;
     servicesMenuAria: string;
@@ -36,17 +37,6 @@ export type Messages = {
     tags: [string, string, string];
     imageAlt: string;
   };
-  homePatientTrust: {
-    title: string;
-    verifiedLine: string;
-    cards: [
-      { quote: string; label: string },
-      { quote: string; label: string },
-      { quote: string; label: string },
-      { quote: string; label: string },
-      { quote: string; label: string },
-    ];
-  };
   homePatientProof: {
     title: string;
     subtitle: string;
@@ -61,6 +51,20 @@ export type Messages = {
       { alt: string },
       { alt: string },
     ];
+  };
+  reviewsPage: {
+    metaTitle: string;
+    summaryTitle: string;
+    ratingValue: string;
+    basedOn: string;
+    cta: string;
+    ctaAria: string;
+    carouselPrev: string;
+    carouselNext: string;
+    goToSlide: string;
+    screenshotsTitle: string;
+    screenshotsSubtitle: string;
+    items: { name: string; time: string; quote: string }[];
   };
   support: {
     kicker: string;
@@ -265,6 +269,7 @@ export type Messages = {
       prp: { title: string; description: string };
       about: { title: string; description: string };
       privacy: { title: string; description: string };
+      reviews: { title: string; description: string };
       notFound: { title: string; description: string };
     };
   };
@@ -275,6 +280,7 @@ export const messages: Record<Locale, Messages> = {
     nav: {
       home: "Home",
       services: "Services",
+      reviews: "Reviews",
       about: "About",
       requestCta: "Request a Consultation",
       servicesMenuAria: "Services submenu",
@@ -344,50 +350,63 @@ export const messages: Record<Locale, Messages> = {
       tags: ["RN-led", "Beverly Hills network", "Private consultations"],
       imageAlt: "Abstract illustration of a clinical care pathway and journey",
     },
-    homePatientTrust: {
-      title: "Trusted by Patients Like You",
-      verifiedLine: "Verified Google Review",
-      cards: [
-        {
-          quote:
-            "Dr. Danzer and Ariel were incredibly supportive through our first IVF treatment. We received quick lab results, clear explanations, and consistent communication throughout the process.",
-          label: "IVF PATIENT · LOS ANGELES",
-        },
-        {
-          quote:
-            "I felt genuinely cared for at every step. Dr. Danzer was professional and trustworthy, and Ariel made the entire journey feel calm, clear, and well supported.",
-          label: "IVF PATIENT · SOUTHERN CALIFORNIA",
-        },
-        {
-          quote:
-            "Everything at SCRC went smoothly. Special thanks to Ariel for her patience and care throughout the egg freezing process.",
-          label: "EGG FREEZING PATIENT · SOUTHERN CALIFORNIA",
-        },
-        {
-          quote:
-            "From early testing to embryo transfer and pregnancy confirmation, every step felt smooth and coordinated. Ariel helped us communicate efficiently across the clinic and made the process feel much easier.",
-          label: "IVF PATIENT · CHINESE-SPEAKING FAMILY",
-        },
-        {
-          quote:
-            "When timing became stressful, Ariel stepped in, followed up personally, and helped make the egg freezing process possible before my departure. Her support made a critical difference.",
-          label: "EGG FREEZING PATIENT · INTERNATIONAL PATIENT",
-        },
-      ],
-    },
     homePatientProof: {
       title: "Real Patient Reviews",
-      subtitle: "From verified Google patient feedback",
+      subtitle: "From patient feedback shared publicly online",
       viewLargerAria: "View full-size screenshot",
       closeLightboxAria: "Close",
       expandMore: "Show 2 more reviews",
       expandLess: "Show less",
       slides: [
-        { alt: "Google review screenshot: IVF care at SCRC" },
-        { alt: "Google review screenshot: IVF journey with clinical team" },
-        { alt: "Google review screenshot: egg freezing experience" },
-        { alt: "Google review screenshot: IVF in Chinese" },
-        { alt: "Google review screenshot: international egg freezing support" },
+        { alt: "Patient review screenshot: IVF care at SCRC" },
+        { alt: "Patient review screenshot: IVF journey with clinical team" },
+        { alt: "Patient review screenshot: egg freezing experience" },
+        { alt: "Patient review screenshot: IVF in Chinese" },
+        { alt: "Patient review screenshot: international egg freezing support" },
+      ],
+    },
+    reviewsPage: {
+      metaTitle: "Patient reviews",
+      summaryTitle: "SuperouBao — rooted in leading U.S. fertility centers",
+      ratingValue: "5.0",
+      basedOn: "Featured excerpts from patient feedback we’ve curated for this page",
+      cta: "Leave a review",
+      ctaAria: "Open the public review link in a new tab",
+      carouselPrev: "Previous review",
+      carouselNext: "Next review",
+      goToSlide: "Go to review {n}",
+      screenshotsTitle: "Original screenshots",
+      screenshotsSubtitle: "Select an image to view the full review capture.",
+      items: [
+        {
+          name: "IVF patient · Los Angeles",
+          time: "",
+          quote:
+            "Dr. Danzer and Ariel were incredibly supportive through our first IVF treatment. We received quick lab results, clear explanations, and consistent communication throughout the process.",
+        },
+        {
+          name: "IVF patient · Southern California",
+          time: "",
+          quote:
+            "I felt genuinely cared for at every step. Dr. Danzer was professional and trustworthy, and Ariel made the entire journey feel calm, clear, and well supported.",
+        },
+        {
+          name: "Egg freezing patient · Southern California",
+          time: "",
+          quote: "Everything at SCRC went smoothly. Special thanks to Ariel for her patience and care throughout the egg freezing process.",
+        },
+        {
+          name: "IVF patient · Chinese-speaking family",
+          time: "",
+          quote:
+            "From early testing to embryo transfer and pregnancy confirmation, every step felt smooth and coordinated. Ariel helped us communicate efficiently across the clinic and made the process feel much easier.",
+        },
+        {
+          name: "Egg freezing patient · International",
+          time: "",
+          quote:
+            "When timing became stressful, Ariel stepped in, followed up personally, and helped make the egg freezing process possible before my departure. Her support made a critical difference.",
+        },
       ],
     },
     support: {
@@ -865,6 +884,11 @@ export const messages: Record<Locale, Messages> = {
           title: "Privacy",
           description: "How SuperouBao approaches privacy and data when you use this site or contact our team.",
         },
+        reviews: {
+          title: "Patient reviews",
+          description:
+            "Patient feedback excerpts, a simple carousel, and original screenshots—in one place.",
+        },
         notFound: {
           title: "Page not found",
           description: "This page does not exist on SuperouBao.",
@@ -876,6 +900,7 @@ export const messages: Record<Locale, Messages> = {
     nav: {
       home: "首页",
       services: "服务",
+      reviews: "患者评价",
       about: "关于",
       requestCta: "预约咨询",
       servicesMenuAria: "服务子菜单",
@@ -945,49 +970,63 @@ export const messages: Record<Locale, Messages> = {
       tags: ["RN 把关", "比佛利山庄网络", "私密咨询"],
       imageAlt: "抽象图形：临床路径与陪伴旅程",
     },
-    homePatientTrust: {
-      title: "与您相似的患者，也愿意托付",
-      verifiedLine: "已验证 · Google 评价",
-      cards: [
-        {
-          quote:
-            "第一次试管婴儿，Danzer 医生与 Ariel 全程非常给力。化验出得快，每一步也都有人讲清楚、跟得紧。",
-          label: "试管婴儿 · 洛杉矶",
-        },
-        {
-          quote:
-            "每一步都很安心。Danzer 医生专业可靠，Ariel 让整段旅程从容、清楚，也一直有人照应。",
-          label: "试管婴儿 · 南加州",
-        },
-        {
-          quote: "在 SCRC 一路很顺，特别感谢 Ariel 在冻卵全程的耐心与陪伴。",
-          label: "冻卵 · 南加州",
-        },
-        {
-          quote:
-            "从检查到移植、确认怀孕，环节衔接顺。Ariel 帮我们跨部门沟通，省了很多心，也轻松许多。",
-          label: "试管婴儿 · 华语家庭",
-        },
-        {
-          quote:
-            "时间很紧时，Ariel 主动跟进、当面协调，让我在离境前完成了冻卵——她的帮忙非常关键。",
-          label: "冻卵 · 国际患者",
-        },
-      ],
-    },
     homePatientProof: {
       title: "真实患者评价",
-      subtitle: "摘自 Google 已验证的患者反馈",
+      subtitle: "摘自公开网络上的患者反馈",
       viewLargerAria: "查看大图",
       closeLightboxAria: "关闭",
       expandMore: "展开，再看 2 条",
       expandLess: "收起",
       slides: [
-        { alt: "Google 评价截图：试管婴儿照护" },
-        { alt: "Google 评价截图：试管婴儿全程" },
-        { alt: "Google 评价截图：冻卵体验" },
-        { alt: "Google 评价截图：中文试管婴儿" },
-        { alt: "Google 评价截图：国际患者冻卵" },
+        { alt: "患者评价截图：试管婴儿照护" },
+        { alt: "患者评价截图：试管婴儿全程" },
+        { alt: "患者评价截图：冻卵体验" },
+        { alt: "患者评价截图：中文试管婴儿" },
+        { alt: "患者评价截图：国际患者冻卵" },
+      ],
+    },
+    reviewsPage: {
+      metaTitle: "患者评价",
+      summaryTitle: "SuperouBao — 扎根美国一线生育中心的经验型陪伴",
+      ratingValue: "5.0",
+      basedOn: "本页精选自我们整理的患者反馈摘录",
+      cta: "去写评价",
+      ctaAria: "在新窗口打开公开评价链接",
+      carouselPrev: "上一条",
+      carouselNext: "下一条",
+      goToSlide: "跳到第 {n} 条",
+      screenshotsTitle: "原始截图",
+      screenshotsSubtitle: "点按图片可查看完整截图。",
+      items: [
+        {
+          name: "试管婴儿 · 洛杉矶",
+          time: "",
+          quote:
+            "第一次试管婴儿，Danzer 医生与 Ariel 全程非常给力。化验出得快，每一步也都有人讲清楚、跟得紧。",
+        },
+        {
+          name: "试管婴儿 · 南加州",
+          time: "",
+          quote:
+            "每一步都很安心。Danzer 医生专业可靠，Ariel 让整段旅程从容、清楚，也一直有人照应。",
+        },
+        {
+          name: "冻卵 · 南加州",
+          time: "",
+          quote: "在 SCRC 一路很顺，特别感谢 Ariel 在冻卵全程的耐心与陪伴。",
+        },
+        {
+          name: "试管婴儿 · 华语家庭",
+          time: "",
+          quote:
+            "从检查到移植、确认怀孕，环节衔接顺。Ariel 帮我们跨部门沟通，省了很多心，也轻松许多。",
+        },
+        {
+          name: "冻卵 · 国际患者",
+          time: "",
+          quote:
+            "时间很紧时，Ariel 主动跟进、当面协调，让我在离境前完成了冻卵——她的帮忙非常关键。",
+        },
       ],
     },
     support: {
@@ -1435,6 +1474,10 @@ export const messages: Record<Locale, Messages> = {
         privacy: {
           title: "隐私说明",
           description: "SuperouBao 如何处理您在使用本站或联系团队时的隐私与数据。",
+        },
+        reviews: {
+          title: "患者评价",
+          description: "独立页面呈现患者反馈摘录、轮播与原始截图，便于慢慢阅读。",
         },
         notFound: {
           title: "页面不存在",

@@ -14,6 +14,7 @@ const PATH_TO_SEO: Record<string, SeoRouteKey> = {
   "/care-coordination": "careCoordination",
   "/prp-ovarian-rejuvenation": "prp",
   "/about": "about",
+  "/reviews": "reviews",
   "/privacy": "privacy",
 };
 

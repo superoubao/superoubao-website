@@ -64,6 +64,14 @@ export default function Layout({ children }: { children: ReactNode }) {
               </div>
             </div>
             <NavLink
+              to="/reviews"
+              className={({ isActive }) =>
+                `site-header__link${isActive ? " site-header__link--active" : ""}`
+              }
+            >
+              {t.nav.reviews}
+            </NavLink>
+            <NavLink
               to="/about"
               className={({ isActive }) =>
                 `site-header__link${isActive ? " site-header__link--active" : ""}`

@@ -9,6 +9,7 @@ import ProviderMatching from "./pages/ProviderMatching";
 import CareCoordination from "./pages/CareCoordination";
 import PrpOvarianRejuvenation from "./pages/PrpOvarianRejuvenation";
 import Privacy from "./pages/Privacy";
+import Reviews from "./pages/Reviews";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/care-coordination" element={<CareCoordination />} />
           <Route path="/prp-ovarian-rejuvenation" element={<PrpOvarianRejuvenation />} />
           <Route path="/about" element={<About />} />
+          <Route path="/reviews" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
